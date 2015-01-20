@@ -9,7 +9,7 @@ finish(State, Ctx) -> {ok, State, Ctx}.
 
 %% @doc 支持外部路由转入
 handle(State, Ctx) ->
-    Path = pp:to_binary(wf:path(Ctx#cx.req)),
+    Path = wf:to_binary(wf:path(Ctx#cx.req)),
     {ok, State, req(Ctx, Path, route(Path))}.
 
 req(Ctx, Path, {Module, Bindings})  -> Ctx#cx{path=Path, module=Module, state=[{snowstorm_n2o_route, Bindings}|Ctx#cx.state]};
@@ -25,7 +25,7 @@ route(P) -> route2(P).
 route2(<<>>) -> index;
 route2(P1) ->
     Pres = wf:config(n2o, route_prefix, [<<>>]),
-    P = pp:to_list(P1),
+    P = wf:to_list(P1),
     route2_acc(P, Pres).
 
 route2_acc(P, [H|[]]) ->
