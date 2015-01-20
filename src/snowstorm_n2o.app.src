@@ -1,0 +1,12 @@
+{application, snowstorm_n2o,
+ [
+  {description, ""},
+  {vsn, "1"},
+  {registered, []},
+  {applications, [
+                  kernel,
+                  stdlib
+                 ]},
+  {mod, { snowstorm_n2o_app, []}},
+  {env, []}
+ ]}.
